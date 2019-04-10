@@ -55,7 +55,7 @@ Tools involved:
 ## Project's support scope
 This is often overlooked, and when you do it's bad news. Mobile devices vary incredibly in their capacities. In an already restricted world this could mean the difference between something working as expected, lagging and right out crashing. Or something looking great, crammed and right out not fitting the screen.
 
-Be **extremely** careful when a clients ask to support [everything](http://iossupportmatrix.com).
+Be **extremely** careful when a clients ask to support everything. Check our [device support document](/Documentation/device-support-matrix.md) to know the things that you should keep in mind when trying to define the scope for an App.
 
 So it is of high importance to be able to define these as soon as possible:
 * Supported Families (iPhone, iPad, iPod, tv, watch)
