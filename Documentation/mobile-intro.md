@@ -29,7 +29,7 @@ Pre-release checklist:
 * Continuously make the version available to the product owner(s) so they can try it
 * Update store metadata (description, screenshots, etc)
 * Plan ahead for a phased release where available (always, if including feature flags)
-* Must adhere to the [AppStore regulations](https://developer.apple.com/app-store/review/guidelines/)
+* Must adhere to the [AppStore](https://developer.apple.com/app-store/review/guidelines/) and [Playstore](https://play.google.com/about/developer-content-policy/) regulations.
 
 Post-release must haves:
 * Retrieve that version (and its code) even once it's outdated by newer ones
