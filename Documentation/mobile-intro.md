@@ -43,7 +43,11 @@ In the case of a critical issue:
 * Depending on the criticality of the issue, request [expedite review](https://developer.apple.com/contact/app-store/?topic=expedite) << **DO NOT ABUSE THE EXPEDITE REQUESTS!!**
 
 Tools involved:
+* [Fastlane](https://fastlane.tools) (Allows us to run the building jobs independently from the CI platform through Ruby scripts)
+* [CircleCI](https://www.circleci.com/) (CI platform, implements the branching strategy, runs the jobs using Fastlane)
+* [Azure DevOps](https://dev.azure.com/) (CI platform, alternative to CircleCI)
 * [BuddyBuild](https://www.buddybuild.com) (CI, α testing distribution)
+* [Firebase](https://firebase.google.com/) (Push Notifications, feature flag managment, A/B testing)
 * [Fabric](https://get.fabric.io) (Crash reporting)
 * [TestFlight](https://itunesconnect.apple.com) (Pre-AppStore)
 
