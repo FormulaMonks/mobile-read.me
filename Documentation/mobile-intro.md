@@ -57,24 +57,6 @@ This is often overlooked, and when you do it's bad news. Mobile devices vary inc
 
 Be **extremely** careful when a clients ask to support everything. Check our [device support document](/Documentation/device-support-matrix.md) to know the things that you should keep in mind when trying to define the scope for an App.
 
-So it is of high importance to be able to define these as soon as possible:
-* Supported Families (iPhone, iPad, iPod, tv, watch)
-* Supported devices within each family
-* Supported screen sizes
-* Supported capabilities (camera front-back, audio in-out, gyro, cellular data, etc)
-* Supported OS's (normally recommended is highest version of the last major, plus whole newest major)
-
-There's also, features that may be implicitly expected on a mobile app. These need to be taken into consideration:
-* Localisation
-* Accessibility
-* Orientations (portrait, landscape)
-* Specific device design (for the iPad, for example)
-* Security (encryption)
-* Offline support
-* Deep linking
-* Push notifications
-* Extensions (today, spotlight, watch, quicklook, share, stickers, etc)
-
 ## Being a _good citizen_
 Your software will be run on someone else's device, sometimes it'll be run on millions of someone _elses_' devices. It's their devices, but it's your responsibility to try and keep to the minimum:
 * Battery consumption
