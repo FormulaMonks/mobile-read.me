@@ -70,30 +70,23 @@ The above mentioned consumptions must be kept an eye on. Xcode and Android Studi
 ## Design
 Mobile design differs from web or desktop design in that we are doing so for a device that's intended to be used differently. This applies to product design as well. 20 options on a menu won't do it. Mobile apps are intended for being used quick, on often uncomfortable environments (such as on the bus, on a concert, on very high or very low lighting), with often low connectivity. All that's non essential must be stripped off.
 
-Always prefer standard components and standard workflows, try emulating default apps (such as Settings, Mail, Clock) and when in doubt refer to the [HIG](https://developer.apple.com/ios/human-interface-guidelines/overview/themes/).
-
-Keep in mind different screen sizes and ratios, as well as different image densities (as regular, retina, plus @3x).
+* [iOS Design](/Documentation/ios-specific/ios-design-standard.md)
+* [Android Design](/Documentation/android-specific/android-design-standard.md)
 
 ## Architecture
-iOS's `UIKit` is built for MVC. This pattern has many downsides. The first one being huge `UIViewController`s, state jumping all around and nearly impossible to unit test code.
+We try to stick with the latest technolgies (without falling for untested and greenish technologies) and the guidelines defined by Google and Apple.
 
-To address many of these concerns MVVM was introduced (by Microsoft! 😱), but MVC's being such common across domains and platforms, it was [quickly adopted by the iOS community](https://www.objc.io/issues/13-architecture/mvvm/). Combined with FRP, it's super powerful and easy to unit test.
-
-There are [alternatives](https://www.objc.io/issues/13-architecture/viper/) and people are trying to [improve MVC](https://davedelong.com/blog/2017/11/06/a-better-mvc-part-1-the-problems/), but MVVM is right now pretty much the standard go to.
+* [iOS Architecture Patterns](/Documentation/ios-specific/ios-architecture-patterns.md)
+* [Android Architecture Patterns](/Documentation/android-specific/Architecture/android-architecture-patterns.md)
 
 ## Coding Style
-For coding style, refer to [The Apple Swift Programming Language Guide](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0) and try to emulate how it's done there.
+We try to follow every standard proposed and we enforce this standards by running our code through Lint validators on both platforms. For Kotlin on Android and Swift on iOS.
 
-If from that it's still not clear, fall through to [The Official raywenderlich.com Swift Style Guide](https://github.com/raywenderlich/swift-style-guide).
-
-These conventions should eventually be enforced (upon agreement) by lint. One trending tool to do this right on PRs is [danger.system](http://danger.systems/js/swift.html).
+* [iOS Coding Stlye](/Documentation/ios-specific/ios-coding-style.md)
+* [Android Coding Style](/Documentation/android-specific/android-coding-style.md)
 
 ## Broadly adopted libraries
-Networking: [Alamofire](https://github.com/Alamofire/Alamofire)  
-Logging: [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack)  
-Functional Reactive Programming: [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)  
-Behavior-driven development testing framework: [Quick](https://github.com/Quick/Quick)
+On both platforms we use different third party libraries, here is a list of the technology stack that we currently handle:
 
-Libraries (dependencies) should be kept at minimum. Only include those that really add value to the project and that are broadly adopted (and maintained) by the community.
-
-When (if) including one of these, always do so under Carthage (preferred, shorted build times) or CocoaPods (OK). This will help you keep track of what's in your project, and update it if necessary.
+* [iOS Libraries](/Documentation/ios-specific/ios-libraries.md)
+* [Android Libraries](/Documentation/android-specific/android-libraries.md)
