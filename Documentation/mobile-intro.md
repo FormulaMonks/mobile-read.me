@@ -65,7 +65,7 @@ Your software will be run on someone else's device, sometimes it'll be run on mi
 
 We can, sometimes, when required, make the tradeoff in the server. We can say, on exceptions, "we'll just buy more servers" or "we'll add RAM to that server" or "We can pay the extra bandwidth". But we can't add disk space to the users phone, we can't recharge their battery, we can't pay their phone bill if we retry an API call indefinitely while on roaming.
 
-The above mentioned consumptions must be kept an eye on. Xcode has tools that'll measure those and will help you keeping them within reason.
+The above mentioned consumptions must be kept an eye on. Xcode and Android Studio, they both have tools to measure all these different variables.
 
 ## Design
 Mobile design differs from web or desktop design in that we are doing so for a device that's intended to be used differently. This applies to product design as well. 20 options on a menu won't do it. Mobile apps are intended for being used quick, on often uncomfortable environments (such as on the bus, on a concert, on very high or very low lighting), with often low connectivity. All that's non essential must be stripped off.
