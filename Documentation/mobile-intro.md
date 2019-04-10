@@ -25,7 +25,8 @@ Each project should define its release process. The following are broad strokes 
 Pre-release checklist:
 * Review the exact scope of a version (stories, tasks, etc) and document it for later tracing.
 * Make sure all checks are running (CI, with automated tests, etc)
-* Guarantee a certain level of stability for the whole scope of the version and each individual component (stories, tasks, etc)... TBD: Who's in charge of green lighting a release?
+* Guarantee a certain level of stability for the whole scope of the version and each individual component (stories, tasks, etc)
+* Our [CI/CD pipeline](/Documentation/continuous-integration.md) makes sure that every build gets greenlighted first by QA with the release candidate and then by the stakeholders/PM through the AppStore/Playstore beta channel.
 * Continuously make the version available to the product owner(s) so they can try it
 * Update store metadata (description, screenshots, etc)
 * Plan ahead for a phased release where available (always, if including feature flags)
