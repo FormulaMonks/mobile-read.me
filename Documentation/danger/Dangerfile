@@ -1,0 +1,85 @@
+# Make it more obvious that a PR is a work in progress and shouldn't be merged yet
+warn('PR is classed as Work in Progress, no need for review yet.') if github.pr_title.include? '[WIP]'
+
+# Warn when there is a big PR
+warn('Big PR, try to keep changes smaller next time if you can.') if git.lines_of_code > 500
+
+# Encourage writing up some reasoning about the PR, rather than just leaving
+# a title
+if github.pr_body.length < 5
+  fail 'Please provide a summary in the PR description.'
+end
+
+# release_ PRS!
+if github.branch_for_head.include? 'release_'
+  # Enforce branching strategy with this reminder on "release_"
+  release_reminder = %Q(
+This looks like a release PR.
+After this PR is merged don't forget to:
+  - Distribute a build.
+  - Make sure the release was successfully tagged.
+  - Merge `master` into `development`.
+  - Delete this release branch.
+)
+  message(release_reminder)
+
+  # changelog.md should be changed on a release PR
+  if !git.modified_files.include?('changelog.md')
+    warn("Don't forget to update `changelog.md` file with release notes.")
+  end
+end
+
+# hotfix_ PRS!
+# pretty much the same as "release_"
+if github.branch_for_head.include? 'hotfix_'
+  # Enforce branching strategy with this reminder on "hotfix_"
+  release_reminder = %Q(
+This looks like a hotfix PR.
+After this PR is merged don't forget to:
+  - Distribute a build.
+  - Make sure the release was successfully tagged.
+  - Merge `master` into `development`.
+  - Delete this hotfix branch.
+)
+  message(release_reminder)
+
+  # changelog.md should be changed on a release PR
+  if !git.modified_files.include?('changelog.md')
+    warn("Don't forget to update `changelog.md` file with release notes.")
+  end
+end
+
+# JIRA / Trello / Github issues check
+# at least one commit has to make a reference to a JIRA / Trello / Github issues
+# ticket.
+
+# NOTE: JIRA has alphanumeric identifiers for its tickets ([ABC-123]) while
+# other ticket tools have numeric ones ([123]).
+# Below are 2 examples, each with a different RegEx and copy:
+
+# JIRA, tickets like "[ABC-123]"
+lacks_jira_reference = true
+git.commits.each do |c|
+  if c.message.match(/\[([A-Z]+-[0-9]+)\]/)
+    lacks_jira_reference = false
+  end
+end
+warn("You should refer to a JIRA ticket at least on one commit.") if lacks_jira_reference
+
+# Github / Trello / some-tool ticket, tickets like "[123]"
+lacks_ticket_reference = true
+git.commits.each do |c|
+  if c.message.match(/\[([0-9]+)\]/)
+    lacks_ticket_reference = false
+  end
+end
+warn("You should refer to a issue ticket at least on one commit.") if lacks_ticket_reference
+
+# iOS Specific: Lint
+swiftlint.lint_files inline_mode: true
+
+# We want to have a unique swiftlint file across all mobile team. 
+# This warning will help to get the template updated.
+if git.modified_files.include?('.swiftlint.yml')
+  warn('Swiftlint configuration file was changed. Consider making these changes on the template from **mobile-read.me**.')
+end

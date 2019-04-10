@@ -1,0 +1,100 @@
+default_platform(:android)
+
+platform :android do
+
+  # The slack channel is set to work with #android-qa
+  before_all do
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/[PRIVATE]"
+  end
+
+  desc "Run tests and validations"
+  lane :validate_build do
+    gradle(task: "clean")
+    gradle(task: "app:assembleQaDebug")
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy_to_play_store do
+    gradle(task: 'clean')
+    gradle(task: "app:assembleProdRelease")
+
+    # Uploading to Google Play
+    supply(
+      package_name: "[PACKAGE_NAME]",
+      track: "alpha",
+      track_promote_to: "beta",
+      apk: "/home/circleci/src/app/build/outputs/apk/release/app-release.apk",
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+
+  desc "Deploy a new Beta Build to QA"
+  lane :deploy_qa do |options|
+    # Setting the version name for Fabric
+    version = android_get_version_name(gradle_file: "buildsystem/android.gradle")
+    full_version_name = "v#{version}-#{options[:build_number]}"
+    android_set_version_name(
+      version_name: full_version_name,
+      gradle_file: "buildsystem/android.gradle"
+    )
+
+    # Build the project
+    gradle(task: "app:assembleQaDebug")
+
+    # For some reason changelog_from_git_commits doesn't work okay with the default path
+    release_notes = changelog_from_git_commits(
+      pretty: "- (%ae) %s",
+      commits_count: 5
+    )
+    sh("cd .. && touch changelog.txt")
+    File.write("./changelog.txt", release_notes)
+
+    crashlytics(
+      api_token: ENV['CRASHLYTICS_API_TOKEN'],
+      build_secret: ENV['CRASHLYTICS_BUILD_SECRET'],
+      groups: 'android-qa',
+      notifications: true,
+      notes_path: "fastlane/changelog.txt",
+    )
+
+    slack(
+      message: "Howdy QAs! We've got a new development deploy, browse Fabric's Beta App and look for the version #{full_version_name}"
+    )
+  end
+
+  desc "Deploy a new Beta Build to Release"
+    lane :deploy_rc do |options|
+      # Setting the version name for Fabric
+      version = android_get_version_name(gradle_file: "buildsystem/android.gradle")
+      full_version_name = "v#{version}-#{options[:build_number]}"
+      android_set_version_name(
+        version_name: full_version_name,
+        gradle_file: "buildsystem/android.gradle"
+      )
+
+      # Build the project
+      gradle(task: "app:assembleProdRelease")
+
+      # For some reason changelog_from_git_commits doesn't work okay with the default path
+      release_notes = changelog_from_git_commits(
+        pretty: "- (%ae) %s",
+        commits_count: 5
+      )
+      sh("cd .. && touch changelog.txt")
+      File.write("./changelog.txt", release_notes)
+
+      crashlytics(
+        api_token: ENV['CRASHLYTICS_API_TOKEN'],
+        build_secret: ENV['CRASHLYTICS_BUILD_SECRET'],
+        groups: 'android-milestone',
+        notifications: true,
+        notes_path: "fastlane/changelog.txt"
+      )
+
+      slack(
+        message: "Howdy QAs! We've got a new release deploy, browse Fabric's Beta App and look for the version #{full_version_name}"
+      )
+    end
+end

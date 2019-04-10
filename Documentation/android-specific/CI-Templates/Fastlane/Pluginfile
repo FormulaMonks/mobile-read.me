@@ -1,0 +1,2 @@
+# Allows us to set the version name before the deploy gets build
+gem 'fastlane-plugin-versioning_android'
