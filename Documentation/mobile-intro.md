@@ -83,7 +83,7 @@ We try to stick with the latest technolgies (without falling for untested and gr
 We try to follow every standard proposed and we enforce this standards by running our code through Lint validators on both platforms. For Kotlin on Android and Swift on iOS.
 
 * [iOS Coding Stlye](/Documentation/ios-specific/ios-coding-style.md)
-* [Android Coding Style](/Documentation/android-specific/android-coding-style.md)
+* [Android Coding Style](/Documentation/android-specific/android-coding-standard.md)
 
 ## Broadly adopted libraries
 On both platforms we use different third party libraries, here is a list of the technology stack that we currently handle:
