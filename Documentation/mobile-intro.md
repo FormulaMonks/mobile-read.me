@@ -1,11 +1,3 @@
-***
-<img src="http://f.cl.ly/items/1Q3O263G3R0T1b1u1u0v/cb_draft_label.png" alt="Draft Content" title="Draft Content" height="40" align="right">
-
-Page Title: Mobile  
-Section: [Engineering](https://github.com/citrusbyte/citrusbyte-wiki/wiki/Engineering)  
-Proposed by: [Mariano Abdala](https://github.com/citrusbyte/citrusbyte-wiki/wiki/Team-Introductions#mariano-abdala)
-***
-
 # Mobile
 
 **NOTE**: There are multiple approaches to mobile development. This is a living document, intended as a guide and as a conversation starter, not as rules to be followed. Some of the examples here are oriented towards iOS. When we add Android, we'll just fork whatever's specific and leave whatever's generic to both platforms.
