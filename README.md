@@ -14,6 +14,10 @@ This document is to serve as introduction and directory for root documents.
 
 [Dependency Managers](Documentation/dependency-managers.md)
 
+[Device Support Matrix](Documentation/device-support-matrix.md)
+
+[Mobile Intro](Documentation/mobile-intro.md)
+
 [Writing Changelogs](Documentation/writing-changelogs.md)
 
 ### Platform Specific
