@@ -53,6 +53,8 @@ Once the release candidate gets greenlighted by QA we proceed to merge it into `
 
 Also, **keeping a changelog file updated is encouraged**, it will be extremely useful when updating the store and adding some *"What's new"* copy. [Read more about this here](writing-changelogs.md)
 
+✳️ In some situations, it may be appropriate and required to have a single, permanent `release` branch. For example, when using Azure DevOps for CI/CD, a branch must exist in order to define branch policies on it, to enforce the usage of pull requests, require a minimum number of reviewers, or to trigger the execution of a validation pipeline before allowing a PR to be merged.
+
 ## Tagging for releases
 
 Even when the idea is that each release that we send to the Playstore/AppStore should be saved somewhere, in case that we need to rollback the version that we pushed, we want to keep track of the release candidates, we are doing so by tagging the branches prior to the releases.
