@@ -6,7 +6,7 @@ CI and CD are an essential part of successful mobile application development: th
 
 ## Branches
 
-We have different branches, defined in our [branching strategy](branching-strategy.md) document. When building some of these branches we should trigger different actions in our CI platform. Our main branches are `master`, `release`, `development` and the `feature` branches.
+We have different branches, defined in our [branching strategy](branching-strategy.md) document. When building some of these branches we should trigger different actions in our CI platform. Our main branches are `main`, `release`, `development` and the `feature` branches.
 
 ## Fastlane and CI
 
@@ -62,7 +62,7 @@ We don't need to run the lint validations or UT at this point.
     - Deploy the binary to Fabric under the `ios-milestone` testing group. This testing group contains everyone QA, developers, PMs, etc.  The version name should be set to `v#{VERSION}(#{BUILD_NUMBER})`. Changelog should be set to the latests commits. 
     - The binary should be identical to the one that we are going to push to the App Store later. No QA related options should be available here.
     - Send a message to the Slack channel #ios-qa letting the QAs know that a new version is available for testing.
-- Build on `master` branch:
+- Build on `main` branch:
   - Android:
     - Build the project and send the deploy to the Google Playstore's Beta track. Once the deploy in the Beta track gets greenlighted by the stakeholders/client we can promote it to release.
   - iOS:

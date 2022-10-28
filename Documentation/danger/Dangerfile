@@ -18,7 +18,7 @@ This looks like a release PR.
 After this PR is merged don't forget to:
   - Distribute a build.
   - Make sure the release was successfully tagged.
-  - Merge `master` into `development`.
+  - Merge `main` into `development`.
   - Delete this release branch.
 )
   message(release_reminder)
@@ -38,7 +38,7 @@ This looks like a hotfix PR.
 After this PR is merged don't forget to:
   - Distribute a build.
   - Make sure the release was successfully tagged.
-  - Merge `master` into `development`.
+  - Merge `main` into `development`.
   - Delete this hotfix branch.
 )
   message(release_reminder)
