@@ -90,7 +90,7 @@ Finally, you can use that string to attach it on your builds using Crashlytics /
       name: "#{get_version_from_plist}",
       tag_name: current_tag,
       description: notes,
-      commitish: "master",
+      commitish: "main",
       upload_assets: nil
     )
   end
